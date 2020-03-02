@@ -72,7 +72,7 @@ SubtitleListItem.defaultProps = {
   onPress: () => {},
   image: (
     <Icon
-      name="ios-arrow-forward"
+      name="clear"
       style={styles.icon}
       size={24}
     />

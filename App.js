@@ -6,6 +6,7 @@
  * @flow
  */
 
+import 'react-native-gesture-handler';
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import EventPage from './components/EventPage';
@@ -19,6 +20,10 @@ import firestore from '@react-native-firebase/firestore';
 import functions from '@react-native-firebase/functions';
 import perf from '@react-native-firebase/perf';
 import storage from '@react-native-firebase/storage';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import Event from './components/Event';
+import StarterPage from './components/StarterPage';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -27,16 +32,18 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+const Stack = createStackNavigator();
+
 type Props = {};
 export default class App extends Component<Props> {
   constructor(props) {
     super(props);
     //this.state = {
-      //time: "",
-      //all: [],
-      //first: {startNumber: null, name: null, firstName: null},
-      //timeToGo: null,
-      //next: []
+    //time: "",
+    //all: [],
+    //first: {startNumber: null, name: null, firstName: null},
+    //timeToGo: null,
+    //next: []
     //};
     //this.second = moment().seconds();
     //this.run = this.run.bind(this);
@@ -94,36 +101,41 @@ export default class App extends Component<Props> {
   //     return Math.round((new Date(startTime).getTime() - time.toDate().getTime()) / 1000);
   // }
 
-  getMockData() {
-    let timeIndex = moment();
-    timeIndex.set('second', 0);
-    timeIndex.set('millisecond', 0);
-    const mapped = [];
-    mockdata.startList.forEach(item => {
-      item.startTime = timeIndex.toDate();
-      timeIndex.add(15, 's');
-      mapped.push(item);
-    });
-    return Promise.resolve(mapped);
-  };
-
-  fetchParticipants() {
-    return this.getMockData()
-    .then(results => {
-      return results.map(item => {
-        item.name = `${item.firstName} ${item.lastName}`;
-        item.startTime = moment(item.startTime);
-        return item;
-      });
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
+  // getMockData() {
+  //   let timeIndex = moment();
+  //   timeIndex.set('second', 0);
+  //   timeIndex.set('millisecond', 0);
+  //   const mapped = [];
+  //   mockdata.startList.forEach(item => {
+  //     item.startTime = timeIndex.toDate();
+  //     timeIndex.add(15, 's');
+  //     mapped.push(item);
+  //   });
+  //   return Promise.resolve(mapped);
+  // }
+  //
+  // fetchParticipants() {
+  //   return this.getMockData()
+  //     .then(results => {
+  //       return results.map(item => {
+  //         item.name = `${item.firstName} ${item.lastName}`;
+  //         item.startTime = moment(item.startTime);
+  //         return item;
+  //       });
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // }
 
   render() {
     return (
-      <EventPage />
+      <NavigationContainer>
+        <Stack.Navigator initialRoutName="Events">
+          <Stack.Screen name="Events" component={EventPage} />
+          <Stack.Screen name="Starter" component={StarterPage} />
+        </Stack.Navigator>
+      </NavigationContainer>
       //   <StarterPage participants={this.state.all} />
     );
   }
@@ -132,13 +144,12 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    backgroundColor: "black",
-    padding: 10
+    flexDirection: 'column',
+    backgroundColor: 'black',
+    padding: 10,
   },
-  clock: {
-  },
+  clock: {},
   text: {
-    color: "white"
-  }
+    color: 'white',
+  },
 });

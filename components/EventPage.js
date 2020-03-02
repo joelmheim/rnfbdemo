@@ -1,20 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {FlatList, Text} from 'react-native';
 import {Appbar} from 'react-native-paper';
 import Event from './Event';
 import firestore from '@react-native-firebase/firestore';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-const EventPage = (props) => {
+const EventPage = ({navigation}) => {
   const [loading, setLoading] = useState(true);
   const [event, setEvent] = useState({});
   const [events, setEvents] = useState([]);
   const ref = firestore().collection('events');
 
+  console.log('Props injected: ', navigation);
+
   useEffect(() => {
     return ref.onSnapshot(querySnapshot => {
       const list = [];
       querySnapshot.forEach(doc => {
-        const { name, eventType, description, startTime, startListGenerated, startListPublished, participants  } = doc.data();
+        const {
+          name,
+          eventType,
+          description,
+          startTime,
+          startListGenerated,
+          startListPublished,
+          participants,
+        } = doc.data();
         list.push({
           id: doc.id,
           name,
@@ -27,6 +39,7 @@ const EventPage = (props) => {
         });
       });
 
+      console.log('Participants fetched: ', list);
       setEvents(list);
 
       if (loading) {
@@ -43,8 +56,8 @@ const EventPage = (props) => {
       <FlatList
         style={{flex: 1}}
         data={events}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Event {...item} />}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => <Event {...item} />}
       />
     </>
   );
