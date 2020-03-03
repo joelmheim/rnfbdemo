@@ -81,6 +81,7 @@ const StarterPage = ({route, navigation}) => {
     const currentSecond = currentTime.second();
     // console.log('Run first: ', first);
     // setFirst(first);
+    setTime(currentTime.format('HH:mm:ss'));
     if (currentSecond !== second) {
       console.log('Tick...');
       // setNext(_.tail(participants));
@@ -111,7 +112,6 @@ const StarterPage = ({route, navigation}) => {
     // }
     //newData.timeToGo = secToGo;
     //console.log('New data: ', newData);
-    setTime(formattedTime);
     //setTimeToGo(secToGo);
     //setData(newData);
   };
