@@ -3,8 +3,7 @@ import {FlatList, Text} from 'react-native';
 import {Appbar} from 'react-native-paper';
 import Event from './Event';
 import firestore from '@react-native-firebase/firestore';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import * as _ from 'lodash';
 
 const EventPage = ({navigation}) => {
   const [loading, setLoading] = useState(true);
@@ -27,6 +26,7 @@ const EventPage = ({navigation}) => {
           startListPublished,
           participants,
         } = doc.data();
+        const sorted_participants = _.sortBy(participants, [p => p.startNumber]);
         list.push({
           id: doc.id,
           name,
@@ -35,7 +35,7 @@ const EventPage = ({navigation}) => {
           startTime,
           startListGenerated,
           startListPublished,
-          participants,
+          participants: sorted_participants,
         });
       });
 

@@ -22,47 +22,29 @@ const styles = StyleSheet.create({
 });
 
 const StarterPage = ({route, navigation}) => {
-  const [time, setTime] = useState('');
-  //const [all, setAll] = useState([]);
-  const [first, setFirst] = useState({
-    startNumber: null,
-    startTime: null,
-    lastName: null,
-    firstName: null,
-  });
-  const [timeToGo, setTimeToGo] = useState(null);
-  const [next, setNext] = useState([]);
-
-  // const [data, setData] = useState({
-  //   time: moment().format('HH:mm:ss'),
-  //   first: {
-  //     startNumber: null,
-  //     startTime: '18:30:00',
-  //     lastName: null,
-  //     firstName: null,
-  //   },
-  //   timeToGo: null,
-  //   next: [],
+  const [time, setTime] = useState('00:00:00');
+  // const [first, setFirst] = useState({
+  //   startNumber: '0',
+  //   startTime: '00:00:00',
+  //   lastName: '',
+  //   firstName: '',
   // });
+  const [timeToGo, setTimeToGo] = useState(999);
+  const [next, setNext] = useState([
+    {
+      startNumber: '0',
+      startTime: '00:00:00',
+      lastName: '',
+      firstName: '',
+    },
+  ]);
 
+  let timerID = null;
   let second = moment().seconds();
   const {event} = route.params;
   const {participants} = event;
 
   console.log('Starter page: ', event);
-  // componentDidMount() {
-  //   this.fetchParticipants()
-  //   .then(participants => {
-  //     this.setState(
-  //       {all: participants, first: participants[0]});
-  //     this.tick(moment());
-  //     this.timerID = setInterval(this.run, 100);
-  //   });
-  // }
-  //
-  // componentWillUnmount() {
-  //   clearInterval(this.timerID);
-  // }
 
   const startTimeString = time => {
     const hour = time.getHours();
@@ -71,16 +53,16 @@ const StarterPage = ({route, navigation}) => {
   };
 
   const secondsToGo = (time, startTime) => {
-    console.log('Time: ', time);
-    console.log('StartTime: ', startTime);
+    // console.log('Time: ', time);
+    // console.log('StartTime: ', startTime);
     if (time && startTime) {
       const now = moment(time, 'HH:mm:ss');
       const start = moment(startTime, 'HH:mm:ss');
       const diff = start.diff(now);
-      console.log('StartTime: ', start);
-      console.log('Current time: ', now);
-      console.log('Diff: ', start.diff(now, 'seconds'));
-      console.log('Duration: ', moment.duration(start.diff(now)).get('second'));
+      // console.log('StartTime: ', start);
+      // console.log('Current time: ', now);
+      // console.log('Diff: ', start.diff(now, 'seconds'));
+      // console.log('Duration: ', moment.duration(start.diff(now)).get('second'));
       return start.diff(now, 'seconds');
       //return Math.round(
       //  (Date.parse(startTime).getTime() - Date.parse(time).getTime()) / 1000,
@@ -92,56 +74,45 @@ const StarterPage = ({route, navigation}) => {
   };
 
   const run = () => {
-    console.log('Run...');
-    const time = moment();
-    const formattedTime = time.format('HH:mm:ss');
-    const first = _.first(participants);
-    const currentSecond = time.second();
-    console.log('Run first: ', first);
-    // setData({
-    //   time: formattedTime,
-    //   first: first,
-    //   timeToGo: secondsToGo(formattedTime, first.startTime),
-    //   next: _.tail(participants),
-    // });
-    setTime(formattedTime);
-    setFirst(first);
-    setNext(_.tail(participants));
+    // console.log('Run...');
+    const currentTime = moment();
+    // const formattedTime = currentTime.format('HH:mm:ss');
+    // const first = _.first(participants);
+    const currentSecond = currentTime.second();
+    // console.log('Run first: ', first);
+    // setFirst(first);
     if (currentSecond !== second) {
-      tick(time);
-      setTime(time.format('HH:mm:ss'));
+      console.log('Tick...');
+      // setNext(_.tail(participants));
+      console.log('Second: ', second);
+      console.log('Current second: ', currentSecond);
+      tick(currentTime);
       second = currentSecond;
     }
   };
 
   const tick = time => {
-    console.log('Tick: ', time);
-    //console.log('Current data: ', data);
+    // console.log('Tick: ', time);
     const formattedTime = time.format('HH:mm:ss');
-    // let newData = {
-    //   time: formattedTime,
-    //   first: data.first,
-    //   timeToGo: data.timeToGo,
-    //   next: data.next,
-    // };
-    let secToGo = secondsToGo(formattedTime, first.startTime);
-    if (secToGo < 0) {
-      const filtered = _.take(
-        participants.filter(item =>
-          moment(item.startTime, 'HH:mm:ss').isAfter(time),
-        ),
-        18,
-      );
-      const first = filtered[0];
-      secToGo = secondsToGo(time, first.startTime);
-      //newData.first = first;
-      setFirst(first);
-      //newData.next = _.tail(filtered);
-      setNext(_.tail(filtered));
-    }
+    //let secToGo = secondsToGo(formattedTime, first.startTime);
+    // if (secToGo < 0) {
+    //   const filtered = _.take(
+    //     participants.filter(item =>
+    //       moment(item.startTime, 'HH:mm:ss').isAfter(time),
+    //     ),
+    //     18,
+    //   );
+    //   const first = _.first(filtered);
+    //   secToGo = secondsToGo(time, first.startTime);
+    //   // newData.first = first;
+    //   //  setFirst(first);
+    //   //newData.next = _.tail(filtered);
+    //   setNext(filtered);
+    // }
     //newData.timeToGo = secToGo;
     //console.log('New data: ', newData);
-    setTimeToGo(secToGo);
+    setTime(formattedTime);
+    //setTimeToGo(secToGo);
     //setData(newData);
   };
 
@@ -172,11 +143,12 @@ const StarterPage = ({route, navigation}) => {
   //   })
   // }
 
-  //console.log('Participants: ', props.participants);
+  console.log('Participants: ', participants);
   //setAll(props.participants);
-  //tick(moment());
-  if (event != []) {
-    const timerID = setInterval(run, 500);
+  if (participants && participants !== []) {
+    //setNext(participants);
+    //setTimeToGo(secondsToGo(time, _.first(next).startTime));
+    timerID = setInterval(run, 100);
   }
 
   return (
@@ -184,17 +156,12 @@ const StarterPage = ({route, navigation}) => {
       <View style={styles.clock}>
         <Time time={time} />
       </View>
-      <View>
-        <First
-          startNumber={first.startNumber}
-          name={`${first.firstName} ${first.lastName}`}
-          firstName={first.firstName}
-          timeToGo={timeToGo}
-        />
-      </View>
-      <View>
-        <Next participants={next} />
-      </View>
+      {/*<View>*/}
+      {/*  <First item={_.first(next)} timeToGo={timeToGo} />*/}
+      {/*</View>*/}
+      {/*<View>*/}
+      {/*  <Next participants={_.tail(next)} />*/}
+      {/*</View>*/}
     </View>
   );
 };

@@ -33,17 +33,20 @@ const styles = StyleSheet.create({
 });
 
 export default function First(props) {
-  const remainStyle = props.timeToGo > 5 ? styles.time : styles.remaining;
+  const {startNumber, firstName, lastName} = props.item;
+  const {timeToGo} = props;
+  const name = `${firstName} ${lastName}`;
+  const remainStyle = timeToGo > 5 ? styles.time : styles.remaining;
   return (
     <View style={styles.view}>
       <View style={styles.textView}>
         <BaseText style={styles.text}>
-          {_.padStart(props.startNumber, 3, ' ')}{' '}
-          {props.name && props.name.length > 20 ? props.firstName : props.name}
+          {_.padStart(startNumber, 3, ' ')}{' '}
+          {name && name.length > 20 ? firstName : name}
         </BaseText>
       </View>
       <View style={styles.timeView}>
-        <BaseText style={remainStyle}>{props.timeToGo}</BaseText>
+        <BaseText style={remainStyle}>{timeToGo}</BaseText>
       </View>
     </View>
   );

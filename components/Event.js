@@ -35,7 +35,7 @@ const Event = event => {
       }
       title={title}
       subtitle={event.startTime.toDate().toLocaleDateString()}
-      onPress={start(event)}
+      onPress={() => start(event)}
     />
   );
 };
