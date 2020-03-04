@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 });
 
 export default function First(props) {
-  const {startNumber, firstName, lastName} = props.item;
+  const {startNumber, startTime, firstName, lastName} = props.item;
   const {timeToGo} = props;
   const name = `${firstName} ${lastName}`;
   const remainStyle = timeToGo > 5 ? styles.time : styles.remaining;
@@ -46,7 +46,7 @@ export default function First(props) {
         </BaseText>
       </View>
       <View style={styles.timeView}>
-        <BaseText style={remainStyle}>{timeToGo}</BaseText>
+        <BaseText style={remainStyle}>{timeToGo > 30 ? startTime : timeToGo}</BaseText>
       </View>
     </View>
   );
