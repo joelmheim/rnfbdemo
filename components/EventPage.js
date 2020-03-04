@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {FlatList, Text} from 'react-native';
-import {Appbar} from 'react-native-paper';
 import Event from './Event';
 import firestore from '@react-native-firebase/firestore';
 import * as _ from 'lodash';
@@ -50,9 +49,6 @@ const EventPage = ({navigation}) => {
 
   return (
     <>
-      <Appbar>
-        <Appbar.Content title={<Text>Available races</Text>} />
-      </Appbar>
       <FlatList
         style={{flex: 1}}
         data={events}

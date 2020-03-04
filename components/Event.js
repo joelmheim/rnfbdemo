@@ -34,7 +34,7 @@ const Event = event => {
         )
       }
       title={title}
-      subtitle={event.startTime.toDate().toLocaleDateString()}
+      subtitle={event.startTime.toDate().toLocaleDateString('nb', { month: "long", day: "numeric", year: "numeric" })}
       onPress={() => start(event)}
     />
   );

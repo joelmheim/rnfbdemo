@@ -42,7 +42,7 @@ export default function First(props) {
       <View style={styles.textView}>
         <BaseText style={styles.text}>
           {_.padStart(startNumber, 3, ' ')}{' '}
-          {name && name.length > 20 ? firstName : name}
+          {name && name.length > 25 ? firstName : name}
         </BaseText>
       </View>
       <View style={styles.timeView}>

@@ -36,7 +36,7 @@ export default function Next(props) {
             3,
             ' ',
           )} ${
-            fullName.length > 20 ? participant.firstName : fullName
+            fullName.length > 30 ? participant.firstName : fullName
           }`}</BaseText>
         </View>
         <View style={styles.col}>
