@@ -131,7 +131,7 @@ android {
 
     defaultConfig {
         multiDexEnabled true
-        applicationId "com.rnfbdemo"
+        applicationId "ranheimskiklubb.stime"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
