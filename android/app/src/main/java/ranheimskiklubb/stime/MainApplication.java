@@ -1,4 +1,4 @@
-package com.rnfbdemo;
+package ranheimskiklubb.stime;
 
 import androidx.multidex.MultiDexApplication;
 import android.content.Context;

@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "rnfbdemo-tvOS.app"
-               BlueprintName = "rnfbdemo-tvOS"
-               ReferencedContainer = "container:rnfbdemo.xcodeproj">
+               BuildableName = "SimpleRaceTimer-tvOS.app"
+               BlueprintName = "SimpleRaceTimer-tvOS"
+               ReferencedContainer = "container:SimpleRaceTimer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "rnfbdemo-tvOSTests.xctest"
-               BlueprintName = "rnfbdemo-tvOSTests"
-               ReferencedContainer = "container:rnfbdemo.xcodeproj">
+               BuildableName = "SimpleRaceTimer-tvOSTests.xctest"
+               BlueprintName = "SimpleRaceTimer-tvOSTests"
+               ReferencedContainer = "container:SimpleRaceTimer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "rnfbdemo-tvOSTests.xctest"
-               BlueprintName = "rnfbdemo-tvOSTests"
-               ReferencedContainer = "container:rnfbdemo.xcodeproj">
+               BuildableName = "SimpleRaceTimer-tvOSTests.xctest"
+               BlueprintName = "SimpleRaceTimer-tvOSTests"
+               ReferencedContainer = "container:SimpleRaceTimer.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "rnfbdemo-tvOS.app"
-            BlueprintName = "rnfbdemo-tvOS"
-            ReferencedContainer = "container:rnfbdemo.xcodeproj">
+            BuildableName = "SimpleRaceTimer-tvOS.app"
+            BlueprintName = "SimpleRaceTimer-tvOS"
+            ReferencedContainer = "container:SimpleRaceTimer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "rnfbdemo-tvOS.app"
-            BlueprintName = "rnfbdemo-tvOS"
-            ReferencedContainer = "container:rnfbdemo.xcodeproj">
+            BuildableName = "SimpleRaceTimer-tvOS.app"
+            BlueprintName = "SimpleRaceTimer-tvOS"
+            ReferencedContainer = "container:SimpleRaceTimer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "rnfbdemo-tvOS.app"
-            BlueprintName = "rnfbdemo-tvOS"
-            ReferencedContainer = "container:rnfbdemo.xcodeproj">
+            BuildableName = "SimpleRaceTimer-tvOS.app"
+            BlueprintName = "SimpleRaceTimer-tvOS"
+            ReferencedContainer = "container:SimpleRaceTimer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

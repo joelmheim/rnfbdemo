@@ -32,7 +32,7 @@ const StarterPage = ({route, navigation}) => {
   const initial = participants && participants !== [] ? _.first(participants) : { startNumber: '0', startTime: '00:00:00', firstName: 'No more', lastName: 'participants.'};
   const rest = participants && participants !== [] ? _.tail(participants) : [];
   const title = `${moment(startTime.toDate()).format('L')}: ${name} - ${eventType}`;
-  navigation.setOptions({title: title});
+  navigation.setOptions({title: title, });
 
   const secondsToGo = (time, startTime) => {
     if (time && startTime) {
