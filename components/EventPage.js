@@ -10,6 +10,8 @@ const EventPage = ({navigation}) => {
   const [events, setEvents] = useState([]);
   const ref = firestore().collection('events');
 
+
+
   console.log('Props injected: ', navigation);
 
   useEffect(() => {

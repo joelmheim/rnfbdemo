@@ -37,6 +37,15 @@ export default function First(props) {
   const {timeToGo} = props;
   const name = `${firstName} ${lastName}`;
   const remainStyle = timeToGo > 5 ? styles.time : styles.remaining;
+  const remaining = () => {
+    if (timeToGo > 300) {
+      return startTime;
+    } else if (timeToGo < 0) {
+      return 0;
+    } else {
+      return timeToGo;
+    }
+  }
   return (
     <View style={styles.view}>
       <View style={styles.textView}>
@@ -46,7 +55,7 @@ export default function First(props) {
         </BaseText>
       </View>
       <View style={styles.timeView}>
-        <BaseText style={remainStyle}>{timeToGo > 30 ? startTime : timeToGo}</BaseText>
+        <BaseText style={remainStyle}>{remaining()}</BaseText>
       </View>
     </View>
   );

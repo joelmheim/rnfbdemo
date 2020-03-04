@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import moment from 'moment';
+import moment from 'moment/min/moment-with-locales';
 import {StyleSheet, View} from 'react-native';
 import Time from './Time';
 import First from './First';
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
 });
 
 const StarterPage = ({route, navigation}) => {
+  moment().locale('nb');
   let timerID = null;
   let second = moment().seconds();
   let newData = {};
@@ -30,7 +31,7 @@ const StarterPage = ({route, navigation}) => {
   const {participants, startTime, name, eventType} = event;
   const initial = participants && participants !== [] ? _.first(participants) : { startNumber: '0', startTime: '00:00:00', firstName: 'No more', lastName: 'participants.'};
   const rest = participants && participants !== [] ? _.tail(participants) : [];
-  const title = `${startTime.toDate().toLocaleDateString('nb')}: ${name} - ${eventType}`;
+  const title = `${moment(startTime.toDate()).format('L')}: ${name} - ${eventType}`;
   navigation.setOptions({title: title});
 
   const secondsToGo = (time, startTime) => {
@@ -38,7 +39,7 @@ const StarterPage = ({route, navigation}) => {
       const now = moment(time, 'HH:mm:ss');
       const start = moment(startTime, 'HH:mm:ss');
       const diff = start.diff(now);
-      return start.diff(now, 'seconds');
+      return start.diff(now, 'seconds') + 1;
     } else {
       return -999;
     }
@@ -93,16 +94,16 @@ const StarterPage = ({route, navigation}) => {
         ),
         18,
       );
-      if (filtered && filtered.length > 0) {
+      if (!_.isEmpty(filtered)) {
         const first = _.first(filtered);
         secToGo = secondsToGo(time, first.startTime);
         // newData.first = first;
         setFirst(first);
         // newData.next = _.tail(filtered);
-        setNext(filtered);
+        setNext(_.tail(filtered));
       } else {
-        newData.first = {startNumber: '', startTime: '', firstName: 'No more', lastName: 'participants.'};
-        newData.next = [];
+        setFirst({startNumber: '', startTime: '', firstName: 'No more', lastName: 'participants.'});
+        setNext([]);
       }
     }
     // newData.timeToGo = secToGo;

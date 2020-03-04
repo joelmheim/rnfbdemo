@@ -1,18 +1,17 @@
 import React from 'react';
 import SubtitleListItem from './SubtitleListItem';
-import moment from 'moment';
+import moment from 'moment/min/moment-with-locales';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 
 const Event = event => {
+  moment.locale('nb');
   const navigation = useNavigation();
+  const startTime = moment(event.startTime.toDate());
 
   const readyToStart =
     event.startListGenerated &&
-    event.startTime.toDate() >
-      moment()
-        .startOf('day')
-        .toDate();
+    startTime.isAfter(moment().startOf('day'));
 
   const start = event => {
     console.log('Event selected: ', event);
@@ -23,7 +22,7 @@ const Event = event => {
   };
 
   const title = `${event.name} - ${event.eventType}`;
-  console.log('Start time: ', event.startTime.toDate());
+  console.log('Start time: ', startTime, startTime.locale());
   return (
     <SubtitleListItem
       image={
@@ -34,7 +33,7 @@ const Event = event => {
         )
       }
       title={title}
-      subtitle={event.startTime.toDate().toLocaleDateString('nb', { month: "long", day: "numeric", year: "numeric" })}
+      subtitle={moment(event.startTime.toDate()).format('LLL')}
       onPress={() => start(event)}
     />
   );
